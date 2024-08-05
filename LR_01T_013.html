@@ -1,0 +1,242 @@
+<html><head><base href="https://標題換成Decision boundary and probability diagram of the Logistic Regression model">
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #2c3e50;
+  }
+  #container {
+    display: flex;
+    align-items: stretch;
+    background-color: #34495e;
+    border: 2px solid #7f8c8d;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
+  #controls {
+    width: 200px;
+    padding-right: 20px;
+    border-right: 2px solid #7f8c8d;
+  }
+  #chart-container {
+    width: 700px;
+    height: 500px;
+  }
+  .control {
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1em;
+    color: #ecf0f1;
+    text-transform: uppercase;
+  }
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    background: #7f8c8d;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    border-radius: 5px;
+  }
+  input[type="range"]:hover {
+    opacity: 1;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<div id="container">
+  <div id="controls">
+    <div class="control">
+      <label for="a">Slope (a):</label>
+      <input type="range" id="a" min="0.1" max="5" step="0.1" value="2">
+    </div>
+    <div class="control">
+      <label for="b">Intercept (b):</label>
+      <input type="range" id="b" min="-5" max="5" step="0.1" value="1">
+    </div>
+    <div class="control">
+      <label for="c">Threshold (c):</label>
+      <input type="range" id="c" min="-5" max="5" step="0.1" value="0">
+    </div>
+  </div>
+  <div id="chart-container"></div>
+</div>
+
+<script>
+function sigmoid(x) {
+  return 1 / (1 + Math.exp(-x));
+}
+
+function heaviside(x) {
+  return x >= 0 ? 1 : 0;
+}
+
+function generateData(a, b, c) {
+  const data = [];
+  for (let i = 0; i < 100; i++) {
+    const x = Math.random() * 10 - 5;
+    const y = heaviside(a * x + b - c);
+    data.push([x, y]);
+  }
+  return data;
+}
+
+function updatePlot() {
+  const a = parseFloat(document.getElementById('a').value);
+  const b = parseFloat(document.getElementById('b').value);
+  const c = parseFloat(document.getElementById('c').value);
+
+  const x = Array.from({length: 200}, (_, i) => i / 20 - 5);
+  const z = x.map(val => a * val + b);
+  const p = z.map(sigmoid);
+  const y = z.map(val => heaviside(val - c));
+
+  const trace1 = {
+    x: x,
+    y: z,
+    name: `z = ${a.toFixed(1)}x + ${b.toFixed(1)}`,
+    type: 'scatter',
+    mode: 'lines',
+    line: {color: '#2ecc71', width: 3}
+  };
+
+  const trace2 = {
+    x: x,
+    y: p,
+    name: 'p = 1 / (1 + exp(-z))',
+    type: 'scatter',
+    mode: 'lines',
+    line: {color: '#e74c3c', width: 3}
+  };
+
+  const trace3 = {
+    x: x,
+    y: y,
+    name: `y = u(x - ${c.toFixed(1)})`,
+    type: 'scatter',
+    mode: 'lines',
+    line: {color: '#3498db', width: 3}
+  };
+
+  const randomData = generateData(a, b, c);
+  const trace4 = {
+    x: randomData.map(point => point[0]),
+    y: randomData.map(point => point[1]),
+    name: 'Random Data',
+    type: 'scatter',
+    mode: 'markers',
+    marker: {
+      color: randomData.map(point => point[1] === 0 ? '#3498db' : '#e74c3c'),
+      size: 8,
+      opacity: 0.7,
+      symbol: 'square'
+    }
+  };
+
+  const layout = {
+    title: {
+      text: 'Decision boundary and probability diagram<br>of the Logistic Regression model',
+      font: { size: 22, color: '#ecf0f1', family: 'Roboto' },
+      y: 0.95
+    },
+    xaxis: {
+      title: 'x (Input Feature)',
+      zeroline: true,
+      zerolinecolor: '#95a5a6',
+      zerolinewidth: 2,
+      gridcolor: '#95a5a6',
+      gridwidth: 1,
+      tickfont: { size: 12, color: '#ecf0f1' },
+      titlefont: { size: 14, color: '#ecf0f1' }
+    },
+    yaxis: {
+      title: 'z (Linear Combination) / p (Probability) / y (Decision)',
+      range: [-0.1, 1.1],
+      zeroline: true,
+      zerolinecolor: '#95a5a6',
+      zerolinewidth: 2,
+      gridcolor: '#95a5a6',
+      gridwidth: 1,
+      tickfont: { size: 12, color: '#ecf0f1' },
+      titlefont: { size: 14, color: '#ecf0f1' }
+    },
+    legend: {
+      x: 1,
+      y: 0.5,
+      xanchor: 'right',
+      yanchor: 'middle',
+      font: { size: 12, color: '#ecf0f1' },
+      bgcolor: 'rgba(44, 62, 80, 0.8)',
+      bordercolor: '#7f8c8d',
+      borderwidth: 2
+    },
+    annotations: [
+      {
+        x: 4,
+        y: 0.95,
+        xref: 'x',
+        yref: 'y',
+        text: 'Probability of Classification',
+        showarrow: true,
+        arrowhead: 2,
+        ax: 0,
+        ay: -40,
+        font: { size: 12, color: '#ecf0f1' },
+        arrowcolor: '#ecf0f1'
+      },
+      {
+        x: -0.5,
+        y: 0.5,
+        xref: 'x',
+        yref: 'y',
+        text: 'Decision Boundary',
+        showarrow: true,
+        arrowhead: 2,
+        ax: -40,
+        ay: -40,
+        font: { size: 12, color: '#ecf0f1' },
+        arrowcolor: '#ecf0f1'
+      }
+    ],
+    margin: { t: 100 },
+    paper_bgcolor: '#34495e',
+    plot_bgcolor: '#34495e',
+    font: { family: 'Roboto', color: '#ecf0f1' }
+  };
+
+  Plotly.newPlot('chart-container', [trace1, trace2, trace3, trace4], layout);
+}
+
+document.getElementById('a').addEventListener('input', updatePlot);
+document.getElementById('b').addEventListener('input', updatePlot);
+document.getElementById('c').addEventListener('input', updatePlot);
+
+updatePlot();
+</script>
+</body></html>
