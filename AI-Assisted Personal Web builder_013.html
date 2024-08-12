@@ -1,0 +1,339 @@
+<html><head><base href="https://aiengine.portfolios.com/janedoe/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jane Doe - AI Engineer</title>
+<style>
+:root {
+    --primary-color: #008080;
+    --secondary-color: #00A0A0;
+    --accent-color: #FF6600;
+    --neutral-color: #F2F2F2;
+    --text-color: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--neutral-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+#home {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 128, 128, 0.7), rgba(0, 128, 128, 0.7)), url('https://source.unsplash.com/random/1920x1080?ai,technology') no-repeat center center/cover;
+    color: white;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #FF8533;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+h1, h2 {
+    margin-bottom: 1rem;
+}
+
+#about, #projects, #skills, #contact {
+    scroll-margin-top: 80px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 1rem;
+}
+
+.skill-bars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.skill-bar {
+    flex: 1 1 300px;
+    background-color: #e0e0e0;
+    height: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: white;
+    transition: width 1s ease-out;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin-bottom: 0.5rem;
+    }
+}
+</style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="container">
+                <h1>Jane Doe</h1>
+                <h2>AI Engineer</h2>
+                <p>Crafting intelligent solutions for tomorrow's challenges</p>
+                <a href="#projects" class="cta-button">View Projects</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <img src="https://source.unsplash.com/random/300x300?portrait" alt="Jane Doe portrait" width="300" height="300" style="border-radius: 50%; float: left; margin-right: 2rem; margin-bottom: 1rem;">
+                <p>As a passionate AI Engineer with over 5 years of experience, I specialize in developing cutting-edge machine learning models and AI-driven applications. My expertise spans natural language processing, computer vision, and reinforcement learning.</p>
+                <p>I hold a Master's degree in Computer Science with a focus on Artificial Intelligence from Stanford University. My work has been recognized with awards from prestigious AI conferences, and I'm always excited to tackle new challenges in the field.</p>
+                <p>When I'm not coding or training models, you can find me contributing to open-source AI projects or mentoring aspiring data scientists.</p>
+                <a href="https://aiengine.portfolios.com/janedoe/resume.pdf" class="cta-button" style="margin-top: 1rem;">Download Resume</a>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <img src="https://source.unsplash.com/random/600x400?ai,robot" alt="AI-powered robot assistant" width="600" height="400">
+                        <div class="project-info">
+                            <h3>AI Assistant</h3>
+                            <p>Developed a conversational AI assistant capable of understanding complex queries and providing context-aware responses.</p>
+                            <p><strong>Technologies:</strong> Python, TensorFlow, BERT, Flask</p>
+                            <a href="https://github.com/janedoe/ai-assistant" class="cta-button">View on GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://source.unsplash.com/random/600x400?data,visualization" alt="Data visualization dashboard" width="600" height="400">
+                        <div class="project-info">
+                            <h3>Predictive Analytics Dashboard</h3>
+                            <p>Created an interactive dashboard for visualizing and forecasting business metrics using machine learning models.</p>
+                            <p><strong>Technologies:</strong> Python, Scikit-learn, D3.js, React</p>
+                            <a href="https://github.com/janedoe/predictive-dashboard" class="cta-button">View on GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://source.unsplash.com/random/600x400?computer,vision" alt="Computer vision object detection" width="600" height="400">
+                        <div class="project-info">
+                            <h3>Real-time Object Detection</h3>
+                            <p>Implemented a real-time object detection system using deep learning, capable of identifying multiple objects in video streams.</p>
+                            <p><strong>Technologies:</strong> Python, PyTorch, OpenCV, YOLO</p>
+                            <a href="https://github.com/janedoe/object-detection" class="cta-button">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2>Skills</h2>
+                <div class="skill-bars">
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%;">Python</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;">TensorFlow</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;">PyTorch</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%;">Scikit-learn</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;">Natural Language Processing</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;">Computer Vision</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <form action="https://formspree.io/f/your-form-id" method="POST">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required style="width: 100%; padding: 0.5rem; height: 150px;"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+                <div style="margin-top: 2rem;">
+                    <h3>Connect with me:</h3>
+                    <a href="https://linkedin.com/in/janedoe" target="_blank" rel="noopener noreferrer" style="margin-right: 1rem;">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/linkedin.svg" alt="LinkedIn" width="32" height="32">
+                    </a>
+                    <a href="https://github.com/janedoe" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg" alt="GitHub" width="32" height="32">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Jane Doe. All rights reserved.</p>
+            <p><a href="https://aiengine.portfolios.com/janedoe/privacy-policy" style="color: white;">Privacy Policy</a> | <a href="https://aiengine.portfolios.com/janedoe/terms-of-service" style="color: white;">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate skill bars on scroll
+        const skillSection = document.querySelector('#skills');
+        const skillBars = document.querySelectorAll('.skill-progress');
+
+        const animateSkills = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const skillObserver = new IntersectionObserver(animateSkills, { threshold: 0.5 });
+        skillObserver.observe(skillSection);
+    });
+    </script>
+</body>
+</html>
